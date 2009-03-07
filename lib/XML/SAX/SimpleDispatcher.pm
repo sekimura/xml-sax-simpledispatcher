@@ -1,10 +1,9 @@
 package XML::SAX::SimpleDispatcher;
+use strict;
+use 5.008_001;
+our $VERSION = '0.01';
 
 use base qw(XML::SAX::Base);
-use 5.008001;
-
-use List::Util qw(first);
-use Data::Dumper;
 
 use constant CALLBACK => 0;
 use constant EXPR     => 1;
@@ -87,3 +86,33 @@ sub end_element {
 }
 
 1;
+__END__
+
+=encoding utf-8
+
+=for stopwords
+
+=head1 NAME
+
+XML::SAX::SimpleDispatcher -
+
+=head1 SYNOPSIS
+
+  use XML::SAX::SimpleDispatcher;
+
+=head1 DESCRIPTION
+
+XML::SAX::SimpleDispatcher is
+
+=head1 AUTHOR
+
+Masayoshi Sekimura E<lt>sekimura@cpan.orgE<gt>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=head1 SEE ALSO
+
+=cut
