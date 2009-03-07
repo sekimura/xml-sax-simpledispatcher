@@ -16,12 +16,18 @@ inc/Test/Base/Filter.pm
 inc/Test/Builder.pm
 inc/Test/Builder/Module.pm
 inc/Test/More.pm
+inc/XML/SAX.pm
+inc/XML/SAX/Base.pm
+inc/XML/SAX/Exception.pm
+inc/XML/SAX/ParserFactory.pm
 lib/XML/SAX/SimpleDispatcher.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
 README
 t/00_compile.t
+t/01_new.t
+t/02_process.t
 xt/perlcritic.t
 xt/pod.t
 xt/podspell.t
