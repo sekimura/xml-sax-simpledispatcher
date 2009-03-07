@@ -94,15 +94,44 @@ __END__
 
 =head1 NAME
 
-XML::SAX::SimpleDispatcher -
+XML::SAX::SimpleDispatcher - SAX handler to dispatch subroutines based on 
+XPath like simple path and name of children tags under that node.
 
 =head1 SYNOPSIS
 
-  use XML::SAX::SimpleDispatcher;
+    use XML::SAX::SimpleDispatcher;
+    use XML::SAX::ParserFactory;
+    my $stash;
+    my $handler = XML::SAX::SimpleDispatcher->new(
+        process => {
+          '/Books/Book' => [ sub { push @$stash, $_[0]}, ['Title'] ],
+        }
+    );
+    my $parser = XML::SAX::ParserFactory->parser(Handler => $handler);
+    $parser->parse_string($xml);
+    ## And then, $stash has a list of context inside of 'Title' tag
 
 =head1 DESCRIPTION
 
-XML::SAX::SimpleDispatcher is
+XML::SAX::SimpleDispatcher dispatches subroutine calls based on a XPath like path. This can be handy tweaking children nodes data while parsing data by SAX parser.
+
+=head1 METHODS
+
+=over 4
+
+=item new
+
+    my $handler = XML::SAX::SimpleDispatcher->new(
+        process => {
+          '/MyShelf/Book'  => [ sub { push @$stash, $_[0]}, ['Title'] ],
+          '/MyShelf/Movie' => [ sub { push @$stash, $_[0]}, ['Title'] ],
+        }
+    );
+
+Creates a new XML::SAX::SimpleDispatcher instance.
+
+with process option, you can put a hash reference which has several paths as
+keys and array references as values.
 
 =head1 AUTHOR
 
