@@ -88,10 +88,6 @@ sub end_element {
 1;
 __END__
 
-=encoding utf-8
-
-=for stopwords
-
 =head1 NAME
 
 XML::SAX::SimpleDispatcher - SAX handler to dispatch subroutines based on 
@@ -108,7 +104,7 @@ XPath like simple path and name of children tags under that node.
         }
     );
     my $parser = XML::SAX::ParserFactory->parser(Handler => $handler);
-    $parser->parse_string($xml);
+    $parser->parse_string('<Books><Book><Title>Learning Perl</Title></Book></Books>');
     ## And then, $stash has a list of context inside of 'Title' tag
 
 =head1 DESCRIPTION
@@ -131,7 +127,13 @@ XML::SAX::SimpleDispatcher dispatches subroutine calls based on a XPath like pat
 Creates a new XML::SAX::SimpleDispatcher instance.
 
 with process option, you can put a hash reference which has several paths as
-keys and array references as values.
+keys and array references of a list of subroutine reference and an array
+reference.
+
+Well, it might not look simple but you can dispatch *characters* to each
+subroutine.
+
+=back
 
 =head1 AUTHOR
 
